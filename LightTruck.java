@@ -5,6 +5,8 @@ public class LightTruck extends Vehicle {
 
     private boolean is4wd;
 
+    public TransferCase xferCase;
+
     // Simple LightTruck constructor inheriting all the methods and properties of
     // Vehicle
     public LightTruck(String VIN, double wholesaleCost, double retailPrice, int modelYear, String make, String model,
@@ -14,6 +16,10 @@ public class LightTruck extends Vehicle {
         this.truckWeight = truckWeight;
         this.is4wd = is4wd;
         this.grossCombinedWeight = this.towingCapacity + this.truckWeight;
+
+        if (this.is4wd == true) {
+            this.xferCase = new TransferCase();
+        }
     }
 
     // Getters
@@ -65,5 +71,22 @@ public class LightTruck extends Vehicle {
             str += ", (4WD)";
         }
         return str;
+    }
+
+    // class within a class
+    public class TransferCase {
+        private int numGears;
+
+        public TransferCase() {
+            this.numGears = 4;
+        }
+
+        public TransferCase(int gears) {
+            this.numGears = gears;
+        }
+
+        public int getNumGears() {
+            return this.numGears;
+        }
     }
 }
